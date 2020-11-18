@@ -1,2 +1,4 @@
 # AlgorithmsAI
-Trying to solve all algos from AI
+Algos from AI.
+
+All codes working, though DLS needs a better logic.
