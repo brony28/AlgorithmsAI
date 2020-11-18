@@ -1,7 +1,6 @@
-n = int(input("Enter no of nodes"))
+n = int(input("Enter no of nodes : "))
 
 g={}
-
 for i in range(n):
     sNode = input("Enter node -> ")
     cNodes = input("Enter its child node and its cost -> ").split()
@@ -11,8 +10,8 @@ for i in range(n):
     g[sNode] = temp    
 for key,val in g.items():
     print(f'{key} -> {val}')
-# print(g)
 
+# # Sample Eg 1
 # g = {'s':[['a',6],['b',5],['c',10]],
 #      'a':[['e',6]],
 #      'b':[['e',6],['d',7]],
@@ -22,19 +21,13 @@ for key,val in g.items():
 #      'f':[['g',3]],
 #      'g':[[]]}
 
-
+#Sample Eg 2
 # g = {'s':[['a',1],['g',12]],
 #      'a':[['b',3],['c',1]],
 #      'b':[['d',3]],
 #      'c':[['d',1],['g',2]],
 #      'd':[['g',3]],
 #      'g':[[]]}
-
-
-
-
-
-
 
 class Nodes(object):
     def __init__(self, treeDict =None):
@@ -46,8 +39,7 @@ class Nodes(object):
             
     def showNodes(self):
         return list(self.treeDict.keys())
-    
-    #TO BE TESTED
+
     def solnPath(self, node, goalNode, path=None):
         if path == None:
             path = []
@@ -65,7 +57,6 @@ class Nodes(object):
                     return extended_path
         return None
     
-        
     def findPath(self, startNode, goalNode, queue=None, orderOfPath=None,soluPathList=None,cost=0):
         if(queue==None):
             queue = [[startNode,0]]
@@ -91,26 +82,15 @@ class Nodes(object):
             for values in ahem:
                 ok.append([values[0],values[1]+temp[1]])
             queue = queue + ok
-
         return self.findPath(startNode, goalNode, queue, orderOfPath,soluPathList,cost)
-
-
-
 
 n = Nodes(g)
 n.showNodes() # displays all nodes..
 
-
-
 startNode = input("Enter start node ")
 goalNode = input("Enter goal node ")
-# print([[startNode,0]])
-# que = PriorityQueue()
-# que.put((0,startNode))
-# print(que)
 checker,ordor,solPath,cost = n.findPath(startNode,goalNode) #displays
 print(checker)
-# solnPaa = n.solnPath(startNode, goalNode)
 print("Order of Nodes -> ",ordor)
 print("Solution Path -> ",solPath)
 print("Cost -> ",cost)
