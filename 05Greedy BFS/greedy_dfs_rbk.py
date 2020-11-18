@@ -1,14 +1,13 @@
-
 g={}
 hue = {}
 
-n = int(input("Enter no of nodes"))
-
+## USER INPUT VALUES
+n = int(input("Enter no of nodes : "))
 
 for i in range(n):
-    sNode = input("Enter node -> ")
-    hueVal = int(input("Enter the heuristic value -> "))
-    cNodes = input("Enter its child node, heuristic value and its cost from parent node -> ").split()
+    sNode = input("Enter node => ")
+    hueVal = int(input("Enter the heuristic value => "))
+    cNodes = input("Enter its child node and its cost from parent node => ").split()
     temp=[]
     for i in range(0,len(cNodes),2):
         temp.append([cNodes[i],int(cNodes[i+1])])
@@ -20,8 +19,10 @@ for key,val in g.items():
 print("Heuristic Table")
 for key,val in hue.items():
     print(f'{key} -> {val}')
+# TO execute with hardcoded values, comment the lines from 'USER INPUT VALUES'
+# and uncomment any of the below examples.
 
-
+#HARDCODED Eg.
 # g = {'s':[['a',6],['b',5],['c',10]],
 #      'a':[['e',6]],
 #      'b':[['e',6],['d',7]],
@@ -44,7 +45,6 @@ for key,val in hue.items():
 
 class Nodes(object):
     def __init__(self, treeDict =None):
-        
         if(treeDict is None):
             self.treeDict = {}
         else:
@@ -89,7 +89,6 @@ class Nodes(object):
         for values in trees[temp[0]]:
             values[1]=values[1]+temp[2]
 #             print(values)
-#             print
         for values in trees[temp[0]]:
             staque.insert(0,[values[0],hue[values[0]],values[1]])
         staque.sort(key = lambda x:x[1])
@@ -97,20 +96,14 @@ class Nodes(object):
         cost = staque[0][2]
         return self.findPath(startNode, goalNode, hue, staque,path,solnPathList,cost)
 
-
-
-
 n = Nodes(g)
 n.showNodes() # displays all nodes..
 
-
-
-startNode = input("Enter start node ")
-goalNode = input("Enter goal node ")
+startNode = input("Enter start node : ")
+goalNode = input("Enter goal node : ")
 print(hue)
 checker,Path,solPathListy,costy = n.findPath(startNode,goalNode,hue) #displays
 print(checker)
-# print(staque)
 print("Order of Nodes -> ",Path)
 print("Solution Path -> ",solPathListy)
 print("Cost -> ",costy)
