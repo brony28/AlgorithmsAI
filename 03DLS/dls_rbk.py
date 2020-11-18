@@ -1,8 +1,5 @@
 class Nodes(object):
-    
-#     orderOfNodes = [] 
     def __init__(self, treeDict =None):
-        
         if(treeDict is None):
             self.treeDict = {}
         else:
@@ -39,26 +36,23 @@ class Nodes(object):
         return None
 
 
-n = int(input("Enter no of nodes"))
-
+n = int(input("Enter no of nodes : "))
 g={}
 for i in range(n):
-    sNode = input("Enter node -> ")
-    cNodes = input("Enter its child node -> ").split()
+    sNode = input("Enter node => ")
+    cNodes = input("Enter its child node => ").split()
     g[sNode] = cNodes
 
 for key,val in g.items():
     print(f'{key} -> {val}')
-# print(g)
 
 
 n = Nodes(g)
 n.showNodes() # displays all nodes..
 
-startNode = input("Enter start node ")
-goalNode = input("Enter goal node ")
-limit = int(input("Enter depth"))
-
+startNode = input("Enter start node : ")
+goalNode = input("Enter goal node : ")
+limit = int(input("Enter depth : "))
 pathy,costy,stackyStacky= n.findPath(limit,startNode,goalNode) #displays
 
 if(limit>=costy):
