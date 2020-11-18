@@ -1,27 +1,29 @@
 g={}
 hue = {}
 
+### USER INPUT VALUES
+n = int(input("Enter no of nodes : "))
 
-# n = int(input("Enter no of nodes"))
-
-# for i in range(n):
-#     sNode = input("Enter node -> ")
-#     hueVal = int(input("Enter the heuristic value -> "))
-#     cNodes = input("Enter its child node, heuristic value and its cost from parent node -> ").split()
-#     temp=[]
-#     for i in range(0,len(cNodes),2):
-#         temp.append([cNodes[i],int(cNodes[i+1])])
-#     g[sNode] = temp
-#     hue[sNode] = hueVal
-# for key,val in g.items():
-#     print(f'{key} -> {val}')
+for i in range(n):
+    sNode = input("Enter node => ")
+    hueVal = int(input("Enter the heuristic value => "))
+    cNodes = input("Enter its child node and its cost from parent node => ").split()
+    temp=[]
+    for i in range(0,len(cNodes),2):
+        temp.append([cNodes[i],int(cNodes[i+1])])
+    g[sNode] = temp
+    hue[sNode] = hueVal
+for key,val in g.items():
+    print(f'{key} -> {val}')
     
-# print("Heuristic Table")
-# for key,val in hue.items():
-#     print(f'{key} -> {val}')
+print("Heuristic Table")
+for key,val in hue.items():
+    print(f'{key} -> {val}')
+# TO execute with hardcoded values, comment the lines from 'USER INPUT VALUES'
+# and uncomment any of the below examples.
 
 
-
+# HARDCODED Eg 1.
 # g = {'s':[['a',6],['b',5],['c',10]],
 #      'a':[['e',6]],
 #      'b':[['e',6],['d',7]],
@@ -41,32 +43,28 @@ hue = {}
 #      'g':0
 # }
 
+# HARDCODED Eg 2.
+# g = {'s':[['a',1],['g',12]],
+#      'a':[['b',3],['c',1]],
+#      'b':[['d',3]],
+#      'c':[['d',1],['g',2]],
+#      'd':[['g',3]],
+#      'g':[[]]}
+# hue = {
+#     's':5,
+#      'a':3,
+#      'b':4,
+#      'c':2,
+#      'd':6,
+#      'g':0
+# }
 
-
-g = {'s':[['a',1],['g',10]],
-     'a':[['b',2],['c',1]],
-     'b':[['d',5]],
-     'c':[['d',3],['g',4]],
-     'd':[['g',2]],
-     'g':[[]]}
-hue = {
-    's':5,
-     'a':3,
-     'b':4,
-     'c':2,
-     'd':6,
-     'g':0
-}
-
-
-
-
+# HARDCODED Eg 3.
 # g = {'s':[['a',5],['b',1]],
 #      'a':[['g',1]],
 #      'b':[['c',2]],
 #      'c':[['g',2]],
 #      'g':[[]]}
-
 # hue = {
 #     's':5,
 #      'a':1,
@@ -74,10 +72,6 @@ hue = {
 #      'c':2,
 #      'g':0
 # }
-
-
-
-
 
 class Nodes(object):
     def __init__(self, treeDict=None):
@@ -97,7 +91,6 @@ class Nodes(object):
             path=[]
         if startNode not in trees:
             return None
-        
         while(len(queue)!=0):
             queue.sort(key = lambda x:x[1])
             print(queue)
@@ -115,23 +108,14 @@ class Nodes(object):
             queue = queue + ok
         return self.findPath(startNode, goalNode, hue, queue, path,cost)
 
-
-
-
-
 n = Nodes(g)
 n.showNodes() # displays all nodes..
 
-
-
-startNode = input("Enter start node ")
-goalNode = input("Enter goal node ")
+startNode = input("Enter start node : ")
+goalNode = input("Enter goal node : ")
 print(hue)
 checker,costy,Path = n.findPath(startNode,goalNode,hue) #displays
 print(checker)
-# print(staque)
 print("Order of Nodes -> ",Path)
 print("Solution Path -> ",Path)
 print("Cost -> ",costy)
-
-
